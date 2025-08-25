@@ -18,7 +18,7 @@
  <div class="max-w-xl mx-auto bg-white rounded-xl shadow-lg p-8">
   <div class="flex justify-between items-center mb-6">
    <img src="./eBA - Splash.png" alt="Logo 1" class="h-10">
-   <img src="./iGUT Clnicas - LOGO.png" alt="Logo 2" class="h-10">
+   <img src="./iGUT clinicas - LOGO.png" alt="Logo 2" class="h-10">
   </div>
   <h2 class="text-2xl font-bold text-gray-800 mb-6">Novo Chamado</h2>
   <form id="issue-form">
@@ -27,7 +27,7 @@
      <label for="sector" class="block text-sm font-medium text-gray-700">Escolha o Setor</label>
      <select id="sector" name="sector" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
       <option value="suporte">SUPORTE</option>
-      <option value="implantacao">IMPLANTAO</option>
+      <option value="implantacao">IMPLANTAÇÃO</option>
      </select>
     </div>
 
@@ -36,7 +36,7 @@
       <label for="suporte-modelo" class="block text-sm font-medium text-gray-700">Escolha um Modelo</label>
       <select id="suporte-modelo" name="modelo" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
        <option value="">Nenhum</option>
-       <option value="infra-solicitacao">SOLICITAO INFRA</option>
+       <option value="infra-solicitacao">SOLICITAÇÃO INFRA</option>
       </select>
      </div>
      <div>
@@ -76,9 +76,9 @@
       <label for="implantacao-modelo" class="block text-sm font-medium text-gray-700">Escolha um Modelo</label>
       <select id="implantacao-modelo" name="modelo" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
        <option value="">Nenhum</option>
-       <option value="migracao">MIGRAO</option>
+       <option value="migracao">MIGRAÇÃO</option>
        <option value="novo-sistema">NOVO SISTEMA</option>
-       <option value="solicitacao">SOLICITAO</option>
+       <option value="solicitacao">SOLICITAÇÃO</option>
       </select>
      </div>
      <div>
@@ -141,21 +141,21 @@
   const modelos = {
    suporte: {
     'infra-solicitacao': {
-     title: "[SOLICITAO INFRA] ",
+     title: "[SOLICITAÇÃO INFRA] ",
      body: "Informaes/solicitaes para o time de infraestrutura."
     }
    },
    implantacao: {
     'migracao': {
-     title: "[MIGRAO] Clnica X",
-     body: "Nome da clnica(sistema):\n\nObs: Sistema da clinica informada sera migrado do servidor de implantacao para topologia operacional"
+     title: "[MIGRAÇÃO] Clinica X",
+     body: "Nome da clinica(sistema):\n\nObs: Sistema da clinica informada sera migrado do servidor de implantacao para topologia operacional"
     },
     'novo-sistema': {
-     title: "[NOVO SISTEMA] Clnica X",
-     body: "Nome da clnica(sistema):\nDomnio da clnica: clinica.igutclinicas.com.br\n\nObs: O novo sistema ser criado no servidor de implantao\nDomnio ser o informado na issue\nBD ser igutclinicas_nomedaclinica"
+     title: "[NOVO SISTEMA] clinica X",
+     body: "Nome da clinica(sistema):\nDomnio da clinica: clinica.igutclinicas.com.br\n\nObs: O novo sistema ser criado no servidor de implantação\nDomnio ser o informado na issue\nBD ser igutclinicas_nomedaclinica"
     },
     'solicitacao': {
-     title: "[SOLICITAO] ",
+     title: "[SOLICITAÇÃO] ",
      body: "Informaes/solicitaes"
     }
    }
