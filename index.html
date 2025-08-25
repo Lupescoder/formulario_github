@@ -25,7 +25,7 @@
             <div class="space-y-4">
                 <div>
                     <label for="modelo" class="block text-sm font-medium text-gray-700">Escolha um Modelo</label>
-                    <select id="modelo" name="modelo" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
+                    <select id="modelo" name="modelo" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
                         <option value="">Nenhum</option>
                         <option value="migracao">MIGRAÇÃO</option>
                         <option value="novo-sistema">NOVO SISTEMA</option>
@@ -42,22 +42,29 @@
                 </div>
                 <div>
                     <label for="milestone" class="block text-sm font-medium text-gray-700">Milestone</label>
-                    <select id="milestone" name="milestone" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
+                    <select id="milestone" name="milestone" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
                         <option value="">Carregando...</option>
                     </select>
                 </div>
                 <div>
-                    <label for="assignee" class="block text-sm font-medium text-gray-700">Responsável (Assignee)</label>
-                    <select id="assignee" name="assignee" multiple class="mt-1 block w-full">
+                    <label for="assignee" class="block text-sm font-medium text-gray-700">Solicitante (Assignee)</label>
+                    <select id="assignee" name="assignee" multiple required class="mt-1 block w-full">
                         <option value="">Carregando...</option>
                     </select>
                 </div>
                 <div>
                     <label for="labels" class="block text-sm font-medium text-gray-700">Etiquetas (Labels)</label>
-                    <select id="labels" name="labels" multiple class="mt-1 block w-full">
+                    <select id="labels" name="labels" multiple required class="mt-1 block w-full">
                         <option value="">Carregando...</option>
                     </select>
                 </div>
+
+                <div>
+                    <label for="prazo" class="block text-sm font-medium text-gray-700">Prazo de Entrega</label>
+                    <input type="date" id="prazo" name="prazo" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
+                </div>
+
+
                 <div class="flex items-center space-x-2">
                     <button type="submit" class="w-full inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                         Criar Chamado
@@ -68,7 +75,7 @@
         </form>
     </div>
 
-   <script>
+    <script>
     document.addEventListener('DOMContentLoaded', function() {
         const GITHUB_REPO = 'douglaspootz/suporte';
         const webhookUrl = 'https://n8n.igut.med.br/webhook/tarefas_suporte';
@@ -154,7 +161,8 @@
                 description: form.description.value,
                 milestone: form.milestone.value,
                 assignees: assigneeTomSelect.getValue(),
-                labels: labelsTomSelect.getValue()
+                labels: labelsTomSelect.getValue(),
+                prazo: form.prazo.value
             };
 
             statusMessage.textContent = 'Enviando...';
@@ -187,6 +195,6 @@
             });
         });
     });
-</script>
+    </script>
 </body>
 </html>
