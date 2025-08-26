@@ -1,353 +1,400 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Criar Chamado</title>
- <script src="https://cdn.tailwindcss.com"></script>
- <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
- <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
- <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-  body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }
-  .ts-control { border-radius: 0.375rem; border-color: #d1d5db; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
-  .ts-wrapper.focus .ts-control { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.5); }
- </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Chamado</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/classic/ckeditor.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+
+        .ts-control {
+            border-radius: 0.375rem;
+            border-color: #d1d5db;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .ts-wrapper.focus .ts-control {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.5);
+        }
+
+        .ck-editor__editable {
+            min-height: 200px;
+        }
+    </style>
 </head>
+
 <body class="p-6">
- <div class="max-w-xl mx-auto bg-white rounded-xl shadow-lg p-8">
-  <div class="flex justify-between items-center mb-6">
-   <img src="./eBA - Splash.png" alt="Logo 1" class="h-10">
-   <img src="./iGUT Clínicas - LOGO.png" alt="Logo 2" class="h-10">
-  </div>
-  <h2 class="text-2xl font-bold text-gray-800 mb-6">Novo Chamado</h2>
-  <form id="issue-form">
-   <div class="space-y-4">
-    <div>
-     <label for="sector" class="block text-sm font-medium text-gray-700">Escolha o Setor</label>
-     <select id="sector" name="sector" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
-      <option value="suporte">SUPORTE</option>
-      <option value="implantacao">IMPLANTAÇÃO</option>
-     </select>
+    <div class="max-w-xl mx-auto bg-white rounded-xl shadow-lg p-8">
+        <div class="flex justify-between items-center mb-6">
+            <img src="./eBA - Splash.png" alt="Logo 1" class="h-10">
+            <img src="./iGUT Clínicas - LOGO.png" alt="Logo 2" class="h-10">
+        </div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Novo Chamado</h2>
+        <form id="issue-form">
+            <div class="space-y-4">
+                <div>
+                    <label for="sector" class="block text-sm font-medium text-gray-700">Escolha o Setor</label>
+                    <select id="sector" name="sector" required
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
+                        <option value="suporte">SUPORTE</option>
+                        <option value="infraestrutura">INFRA</option>
+                    </select>
+                </div>
+
+                <!-- SUPORTE -->
+                <div id="suporte-fields" class="space-y-4">
+                    <div>
+                        <label for="suporte-modelo" class="block text-sm font-medium text-gray-700">Escolha um
+                            Modelo</label>
+                        <select id="suporte-modelo" name="modelo" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
+                            <option value="">Nenhum</option>
+                            <option value="solicitacao-suporte">SOLICITAÇÃO SUPORTE</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="suporte-title" class="block text-sm font-medium text-gray-700">Título do
+                            Chamado</label>
+                        <input type="text" id="suporte-title" name="title" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
+                    </div>
+                    <div>
+                        <label for="suporte-description" class="block text-sm font-medium text-gray-700">Descrição
+                            Detalhada</label>
+                        <textarea id="suporte-description" name="description"></textarea>
+                    </div>
+                    <div>
+                        <label for="suporte-milestone" class="block text-sm font-medium text-gray-700">Milestone</label>
+                        <select id="suporte-milestone" name="milestone" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
+                            <option value="">Carregando...</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="suporte-assignee" class="block text-sm font-medium text-gray-700">Solicitante
+                            (Assignee)</label>
+                        <select id="suporte-assignee" name="assignee" multiple required class="mt-1 block w-full">
+                            <option value="">Carregando...</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="suporte-labels" class="block text-sm font-medium text-gray-700">Etiquetas
+                            (Labels)</label>
+                        <select id="suporte-labels" name="labels" multiple required class="mt-1 block w-full">
+                            <option value="">Carregando...</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="suporte-prazo" class="block text-sm font-medium text-gray-700">Prazo de
+                            Entrega</label>
+                        <input type="date" id="suporte-prazo" name="prazo" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
+                    </div>
+                </div>
+
+                <!-- INFRA -->
+                <div id="infraestrutura-fields" class="space-y-4 hidden">
+                    <div>
+                        <label for="infraestrutura-modelo" class="block text-sm font-medium text-gray-700">Escolha um
+                            Modelo</label>
+                        <select id="infraestrutura-modelo" name="modelo" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
+                            <option value="">Nenhum</option>
+                            <option value="migracao">MIGRAÇÃO</option>
+                            <option value="novo-sistema">NOVO SISTEMA</option>
+                            <option value="solicitacao">SOLICITAÇÃO</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="infraestrutura-title" class="block text-sm font-medium text-gray-700">Título do
+                            Chamado</label>
+                        <input type="text" id="infraestrutura-title" name="title" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
+                    </div>
+                    <div>
+                        <label for="infraestrutura-description"
+                            class="block text-sm font-medium text-gray-700">Descrição Detalhada</label>
+                        <textarea id="infraestrutura-description" name="description"></textarea>
+                    </div>
+                    <div>
+                        <label for="infraestrutura-milestone"
+                            class="block text-sm font-medium text-gray-700">Milestone</label>
+                        <select id="infraestrutura-milestone" name="milestone" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
+                            <option value="">Carregando...</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="infraestrutura-assignee" class="block text-sm font-medium text-gray-700">Solicitante
+                            (Assignee)</label>
+                        <select id="infraestrutura-assignee" name="assignee" multiple required
+                            class="mt-1 block w-full">
+                            <option value="">Carregando...</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="infraestrutura-labels" class="block text-sm font-medium text-gray-700">Etiquetas
+                            (Labels)</label>
+                        <select id="infraestrutura-labels" name="labels" multiple required class="mt-1 block w-full">
+                            <option value="">Carregando...</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="infraestrutura-prazo" class="block text-sm font-medium text-gray-700">Prazo de
+                            Entrega</label>
+                        <input type="date" id="infraestrutura-prazo" name="prazo" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-2">
+                    <button type="submit"
+                        class="w-full inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                        Criar Chamado
+                    </button>
+                    <p id="status-message" class="text-sm font-medium text-gray-600 hidden"></p>
+                </div>
+            </div>
+        </form>
     </div>
 
-    <div id="suporte-fields" class="space-y-4">
-     <div>
-      <label for="suporte-modelo" class="block text-sm font-medium text-gray-700">Escolha um Modelo</label>
-      <select id="suporte-modelo" name="modelo" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
-       <option value="">Nenhum</option>
-       <option value="infra-solicitacao">SOLICITAÇÃO INFRA</option>
-      </select>
-     </div>
-     <div>
-      <label for="suporte-title" class="block text-sm font-medium text-gray-700">Ttulo do Chamado</label>
-      <input type="text" id="suporte-title" name="title" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
-     </div>
-     <div>
-      <label for="suporte-description" class="block text-sm font-medium text-gray-700">Descrio Detalhada</label>
-      <textarea id="suporte-description" name="description" rows="8" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border"></textarea>
-     </div>
-     <div>
-      <label for="suporte-milestone" class="block text-sm font-medium text-gray-700">Milestone</label>
-      <select id="suporte-milestone" name="milestone" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
-       <option value="">Carregando...</option>
-      </select>
-     </div>
-     <div>
-      <label for="suporte-assignee" class="block text-sm font-medium text-gray-700">Solicitante (Assignee)</label>
-      <select id="suporte-assignee" name="assignee" multiple required class="mt-1 block w-full">
-       <option value="">Carregando...</option>
-      </select>
-     </div>
-     <div>
-      <label for="suporte-labels" class="block text-sm font-medium text-gray-700">Etiquetas (Labels)</label>
-      <select id="suporte-labels" name="labels" multiple required class="mt-1 block w-full">
-       <option value="">Carregando...</option>
-      </select>
-     </div>
-     <div>
-      <label for="suporte-prazo" class="block text-sm font-medium text-gray-700">Prazo de Entrega</label>
-      <input type="date" id="suporte-prazo" name="prazo" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
-     </div>
-    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', async function () {
+            const repos = {
+                suporte: 'douglaspootz/suporte',
+                infraestrutura: 'douglaspootz/infra'
+            };
+            const webhooks = {
+                suporte: 'https://n8n.igut.med.br/webhook/tarefas_suporte',
+                infraestrutura: 'https://n8n.igut.med.br/webhook/tarefas_infra'
+            };
+            const webhooksBuscar = {
+                suporte: 'https://n8n.igut.med.br/webhook/buscar_dados',
+                infraestrutura: 'https://n8n.igut.med.br/webhook/buscar_infra_dados'
+            };
 
-    <div id="implantacao-fields" class="space-y-4 hidden">
-     <div>
-      <label for="implantacao-modelo" class="block text-sm font-medium text-gray-700">Escolha um Modelo</label>
-      <select id="implantacao-modelo" name="modelo" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
-       <option value="">Nenhum</option>
-       <option value="migracao">MIGRAÇÃO</option>
-       <option value="novo-sistema">NOVO SISTEMA</option>
-       <option value="solicitacao">SOLICITAÇÃO</option>
-      </select>
-     </div>
-     <div>
-      <label for="implantacao-title" class="block text-sm font-medium text-gray-700">Ttulo do Chamado</label>
-      <input type="text" id="implantacao-title" name="title" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
-     </div>
-     <div>
-      <label for="implantacao-description" class="block text-sm font-medium text-gray-700">Descrio Detalhada</label>
-      <textarea id="implantacao-description" name="description" rows="8" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border"></textarea>
-     </div>
-     <div>
-      <label for="implantacao-milestone" class="block text-sm font-medium text-gray-700">Milestone</label>
-      <select id="implantacao-milestone" name="milestone" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
-       <option value="">Carregando...</option>
-      </select>
-     </div>
-     <div>
-      <label for="implantacao-assignee" class="block text-sm font-medium text-gray-700">Solicitante (Assignee)</label>
-      <select id="implantacao-assignee" name="assignee" multiple required class="mt-1 block w-full">
-       <option value="">Carregando...</option>
-      </select>
-     </div>
-     <div>
-      <label for="implantacao-labels" class="block text-sm font-medium text-gray-700">Etiquetas (Labels)</label>
-      <select id="implantacao-labels" name="labels" multiple required class="mt-1 block w-full">
-       <option value="">Carregando...</option>
-      </select>
-     </div>
-     <div>
-      <label for="implantacao-prazo" class="block text-sm font-medium text-gray-700">Prazo de Entrega</label>
-      <input type="date" id="implantacao-prazo" name="prazo" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
-     </div>
-    </div>
+            const modelos = {
+                suporte: {
+                    'solicitacao-suporte': {
+                        title: "[SOLICITAÇÃO SUPORTE] ",
+                        body: "Informações/solicitações para o time de suporte."
+                    }
+                },
+                infraestrutura: {
+                    'migracao': {
+                        title: "[MIGRAÇÃO] Clínica X",
+                        body: "Nome da clínica(sistema):\n\nObs: Sistema informado será migrado do servidor de infraestrutura para topologia operacional."
+                    },
+                    'novo-sistema': {
+                        title: "[NOVO SISTEMA] Clínica X",
+                        body: "Nome da clínica(sistema):\nDomínio: clinica.igutclinicas.com.br\n\nObs: O novo sistema será criado no servidor de implantação."
+                    },
+                    'solicitacao': {
+                        title: "[SOLICITAÇÃO] ",
+                        body: "Informações/solicitações"
+                    }
+                }
+            };
 
-    <div class="flex items-center space-x-2">
-     <button type="submit" class="w-full inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-      Criar Chamado
-     </button>
-     <p id="status-message" class="text-sm font-medium text-gray-600 hidden"></p>
-    </div>
-   </div>
-  </form>
- </div>
+            const sectorSelect = document.getElementById('sector');
+            const suporteFieldsDiv = document.getElementById('suporte-fields');
+            const infraestruturaFieldsDiv = document.getElementById('infraestrutura-fields');
 
- <script>
- document.addEventListener('DOMContentLoaded', function() {
-  const repos = {
-   suporte: 'douglaspootz/suporte',
-   implantacao: 'douglaspootz/infra'
-  };
-  const webhooks = {
-   suporte: 'https://n8n.igut.med.br/webhook/tarefas_suporte',
-   implantacao: 'https://n8n.igut.med.br/webhook/tarefas_infra'
-  };
-  const webhooksBuscar = {
-   suporte: 'https://n8n.igut.med.br/webhook/buscar_dados',
-   implantacao: 'https://n8n.igut.med.br/webhook/buscar_infra_dados'
-  };
+            const suporteMilestoneSelect = document.getElementById('suporte-milestone');
+            const suporteAssigneeTomSelect = new TomSelect('#suporte-assignee', {});
+            const suporteLabelsTomSelect = new TomSelect('#suporte-labels', {});
 
-  const modelos = {
-   suporte: {
-    'infra-solicitacao': {
-     title: "[SOLICITAÇÃO INFRA] ",
-     body: "Informaes/solicitações para o time de infraestrutura."
-    }
-   },
-   implantacao: {
-    'migracao': {
-     title: "[MIGRAÇÃO] Clinica X",
-     body: "Nome da clinica(sistema):\n\nObs: Sistema da clinica informada sera migrado do servidor de implantacao para topologia operacional"
-    },
-    'novo-sistema': {
-     title: "[NOVO SISTEMA] clinica X",
-     body: "Nome da clinica(sistema):\nDomnio da clinica: clinica.igutclinicas.com.br\n\nObs: O novo sistema ser criado no servidor de implantação\nDomnio ser o informado na issue\nBD ser igutclinicas_nomedaclinica"
-    },
-    'solicitacao': {
-     title: "[SOLICITAÇÃO] ",
-     body: "Informaes/solicitaes"
-    }
-   }
-  };
-  
-  const sectorSelect = document.getElementById('sector');
-  const suporteFieldsDiv = document.getElementById('suporte-fields');
-  const implantacaoFieldsDiv = document.getElementById('implantacao-fields');
+            const infraestruturaMilestoneSelect = document.getElementById('infraestrutura-milestone');
+            const infraestruturaAssigneeTomSelect = new TomSelect('#infraestrutura-assignee', {});
+            const infraestruturaLabelsTomSelect = new TomSelect('#infraestrutura-labels', {});
 
-  const suporteMilestoneSelect = document.getElementById('suporte-milestone');
-  const suporteAssigneeTomSelect = new TomSelect('#suporte-assignee', {});
-  const suporteLabelsTomSelect = new TomSelect('#suporte-labels', {});
-  
-  const implantacaoMilestoneSelect = document.getElementById('implantacao-milestone');
-  const implantacaoAssigneeTomSelect = new TomSelect('#implantacao-assignee', {});
-  const implantacaoLabelsTomSelect = new TomSelect('#implantacao-labels', {});
+            const modeloSuporteSelect = document.getElementById('suporte-modelo');
+            const titleSuporteInput = document.getElementById('suporte-title');
 
-  const modeloSuporteSelect = document.getElementById('suporte-modelo');
-  const titleSuporteInput = document.getElementById('suporte-title');
-  const descriptionSuporteTextarea = document.getElementById('suporte-description');
-  
-  const modeloImplantacaoSelect = document.getElementById('implantacao-modelo');
-  const titleImplantacaoInput = document.getElementById('implantacao-title');
-  const descriptionImplantacaoTextarea = document.getElementById('implantacao-description');
+            const modeloinfraestruturaSelect = document.getElementById('infraestrutura-modelo');
+            const titleinfraestruturaInput = document.getElementById('infraestrutura-title');
 
-  function updateFormVisibility(sector) {
-   // Funcao para desabilitar/habilitar campos
-   const toggleFields = (fieldsDiv, isDisabled) => {
-    const fields = fieldsDiv.querySelectorAll('input, select, textarea');
-    fields.forEach(field => {
-     field.disabled = isDisabled;
-    });
-   };
+            // Criar instâncias CKEditor
+            let editorSuporte, editorInfra;
 
-   if (sector === 'suporte') {
-    suporteFieldsDiv.classList.remove('hidden');
-    implantacaoFieldsDiv.classList.add('hidden');
-    toggleFields(suporteFieldsDiv, false);
-    toggleFields(implantacaoFieldsDiv, true);
-   } else if (sector === 'implantacao') {
-    suporteFieldsDiv.classList.add('hidden');
-    implantacaoFieldsDiv.classList.remove('hidden');
-    toggleFields(suporteFieldsDiv, true);
-    toggleFields(implantacaoFieldsDiv, false);
-   }
-  }
+            async function initEditors() {
+                editorSuporte = await ClassicEditor.create(document.querySelector('#suporte-description'), {
+                    ckfinder: {
+                        uploadUrl: webhooks.suporte // envia arquivos junto da criação da issue
+                    }
+                });
 
-  async function fetchData(url, selectElement, tomSelectInstance = null) {
-   try {
-    const response = await fetch(url);
-    if (!response.ok) {
-     console.error(`Erro ao buscar dados: ${response.status} ${response.statusText}`);
-     return [];
-    }
+                editorInfra = await ClassicEditor.create(document.querySelector('#infraestrutura-description'), {
+                    ckfinder: {
+                        uploadUrl: webhooks.infraestrutura
+                    }
+                });
+            }
+            await initEditors();
 
-    const text = await response.text();
-    if (!text) {
-     console.warn('Resposta da API est vazia, retornando array vazio.');
-     return [];
-    }
+            function updateFormVisibility(sector) {
+                const toggleFields = (fieldsDiv, isDisabled) => {
+                    const fields = fieldsDiv.querySelectorAll('input, select, textarea');
+                    fields.forEach(field => field.disabled = isDisabled);
+                };
 
-    const data = JSON.parse(text);
-    
-    if (tomSelectInstance) {
-     tomSelectInstance.clearOptions();
-     if (Array.isArray(data)) {
-      data.forEach(item => {
-       tomSelectInstance.addOption({ value: item.login || item.name, text: item.login || item.name });
-      });
-     }
-     tomSelectInstance.refreshOptions(false);
-    } else if (selectElement) {
-     selectElement.innerHTML = '<option value="">Selecione a Milestone</option>';
-     if (Array.isArray(data)) {
-      data.forEach(item => {
-       const option = document.createElement('option');
-       option.value = item.number;
-       option.textContent = item.title;
-       selectElement.appendChild(option);
-      });
-     }
-    }
-   } catch (error) {
-    console.error('Erro ao processar resposta JSON:', error);
-    // Limpa os campos para evitar erros
-    if (tomSelectInstance) {
-     tomSelectInstance.clearOptions();
-     tomSelectInstance.refreshOptions(false);
-    } else if (selectElement) {
-     selectElement.innerHTML = '<option value="">Erro ao carregar</option>';
-    }
-   }
-  }
+                if (sector === 'suporte') {
+                    suporteFieldsDiv.classList.remove('hidden');
+                    infraestruturaFieldsDiv.classList.add('hidden');
+                    toggleFields(suporteFieldsDiv, false);
+                    toggleFields(infraestruturaFieldsDiv, true);
+                } else {
+                    suporteFieldsDiv.classList.add('hidden');
+                    infraestruturaFieldsDiv.classList.remove('hidden');
+                    toggleFields(suporteFieldsDiv, true);
+                    toggleFields(infraestruturaFieldsDiv, false);
+                }
+            }
 
-  async function loadSectorData(sector) {
-   await fetchData(`${webhooksBuscar[sector]}?action=getMilestones`, sector === 'suporte' ? suporteMilestoneSelect : implantacaoMilestoneSelect);
-   await fetchData(`${webhooksBuscar[sector]}?action=getAssignees`, null, sector === 'suporte' ? suporteAssigneeTomSelect : implantacaoAssigneeTomSelect);
-   await fetchData(`${webhooksBuscar[sector]}?action=getLabels`, null, sector === 'suporte' ? suporteLabelsTomSelect : implantacaoLabelsTomSelect);
-  }
+            async function fetchData(url, selectElement, tomSelectInstance = null) {
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) return [];
 
-  sectorSelect.addEventListener('change', function() {
-   const sector = this.value;
-   updateFormVisibility(sector);
-   loadSectorData(sector);
-  });
+                    const text = await response.text();
+                    if (!text) return [];
 
-  // Event listeners para os modelos de cada setor
-  modeloSuporteSelect.addEventListener('change', function() {
-   const modeloSelecionado = this.value;
-   if (modelos.suporte[modeloSelecionado]) {
-    titleSuporteInput.value = modelos.suporte[modeloSelecionado].title;
-    descriptionSuporteTextarea.value = modelos.suporte[modeloSelecionado].body;
-   } else {
-    titleSuporteInput.value = "";
-    descriptionSuporteTextarea.value = "";
-   }
-  });
+                    const data = JSON.parse(text);
 
-  modeloImplantacaoSelect.addEventListener('change', function() {
-   const modeloSelecionado = this.value;
-   if (modelos.implantacao[modeloSelecionado]) {
-    titleImplantacaoInput.value = modelos.implantacao[modeloSelecionado].title;
-    descriptionImplantacaoTextarea.value = modelos.implantacao[modeloSelecionado].body;
-   } else {
-    titleImplantacaoInput.value = "";
-    descriptionImplantacaoTextarea.value = "";
-   }
-  });
+                    if (tomSelectInstance) {
+                        tomSelectInstance.clearOptions();
+                        if (Array.isArray(data)) {
+                            data.forEach(item => {
+                                tomSelectInstance.addOption({ value: item.login || item.name, text: item.login || item.name });
+                            });
+                        }
+                        tomSelectInstance.refreshOptions(false);
+                    } else if (selectElement) {
+                        selectElement.innerHTML = '<option value="">Selecione a Milestone</option>';
+                        if (Array.isArray(data)) {
+                            data.forEach(item => {
+                                const option = document.createElement('option');
+                                option.value = item.number;
+                                option.textContent = item.title;
+                                selectElement.appendChild(option);
+                            });
+                        }
+                    }
+                } catch (error) {
+                    console.error('Erro ao buscar dados:', error);
+                }
+            }
 
-  document.getElementById('issue-form').addEventListener('submit', function(event) {
-   event.preventDefault();
+            async function loadSectorData(sector) {
+                await fetchData(`${webhooksBuscar[sector]}?action=getMilestones`, sector === 'suporte' ? suporteMilestoneSelect : infraestruturaMilestoneSelect);
+                await fetchData(`${webhooksBuscar[sector]}?action=getAssignees`, null, sector === 'suporte' ? suporteAssigneeTomSelect : infraestruturaAssigneeTomSelect);
+                await fetchData(`${webhooksBuscar[sector]}?action=getLabels`, null, sector === 'suporte' ? suporteLabelsTomSelect : infraestruturaLabelsTomSelect);
+            }
 
-   const sector = sectorSelect.value;
-   const form = event.target;
-   const statusMessage = document.getElementById('status-message');
+            sectorSelect.addEventListener('change', function () {
+                const sector = this.value;
+                updateFormVisibility(sector);
+                loadSectorData(sector);
+            });
 
-   let data;
-   if (sector === 'suporte') {
-    data = {
-     title: form['suporte-title'].value,
-     description: form['suporte-description'].value,
-     milestone: form['suporte-milestone'].value,
-     assignees: suporteAssigneeTomSelect.getValue(),
-     labels: suporteLabelsTomSelect.getValue(),
-     prazo: form['suporte-prazo'].value
-    };
-   } else if (sector === 'implantacao') {
-    data = {
-     title: form['implantacao-title'].value,
-     description: form['implantacao-description'].value,
-     milestone: form['implantacao-milestone'].value,
-     assignees: implantacaoAssigneeTomSelect.getValue(),
-     labels: implantacaoLabelsTomSelect.getValue(),
-     prazo: form['implantacao-prazo'].value
-    };
-   }
+            modeloSuporteSelect.addEventListener('change', function () {
+                const modeloSelecionado = this.value;
+                if (modelos.suporte[modeloSelecionado]) {
+                    titleSuporteInput.value = modelos.suporte[modeloSelecionado].title;
+                    editorSuporte.setData(modelos.suporte[modeloSelecionado].body);
+                } else {
+                    titleSuporteInput.value = "";
+                    editorSuporte.setData("");
+                }
+            });
 
-   statusMessage.textContent = 'Enviando...';
-   statusMessage.classList.remove('hidden', 'text-green-500', 'text-red-500');
+            modeloinfraestruturaSelect.addEventListener('change', function () {
+                const modeloSelecionado = this.value;
+                if (modelos.infraestrutura[modeloSelecionado]) {
+                    titleinfraestruturaInput.value = modelos.infraestrutura[modeloSelecionado].title;
+                    editorInfra.setData(modelos.infraestrutura[modeloSelecionado].body);
+                } else {
+                    titleinfraestruturaInput.value = "";
+                    editorInfra.setData("");
+                }
+            });
 
-   fetch(webhooks[sector], {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
-   })
-   .then(response => {
-    if (response.ok) {
-     statusMessage.textContent = 'Chamado criado com sucesso!';
-     statusMessage.classList.add('text-green-500');
-     form.reset();
-     suporteAssigneeTomSelect.clear();
-     suporteLabelsTomSelect.clear();
-     implantacaoAssigneeTomSelect.clear();
-     implantacaoLabelsTomSelect.clear();
-    } else {
-     statusMessage.textContent = 'Erro ao criar o chamado. Tente novamente.';
-     statusMessage.classList.add('text-red-500');
-    }
-   })
-   .catch(error => {
-    statusMessage.textContent = 'Erro de conexo: ' + error.message;
-    statusMessage.classList.add('text-red-500');
-   })
-   .finally(() => {
-    setTimeout(() => { statusMessage.classList.add('hidden'); }, 5000);
-   });
-  });
+            document.getElementById('issue-form').addEventListener('submit', async function (event) {
+                event.preventDefault();
 
-  // Carregar dados iniciais e mostrar o setor padro
-  updateFormVisibility(sectorSelect.value);
-  loadSectorData(sectorSelect.value);
- });
- </script>
+                const sector = sectorSelect.value;
+                const form = event.target;
+                const statusMessage = document.getElementById('status-message');
+
+                let data;
+                if (sector === 'suporte') {
+                    data = {
+                        title: form['suporte-title'].value,
+                        description: editorSuporte.getData(),
+                        milestone: form['suporte-milestone'].value,
+                        assignees: suporteAssigneeTomSelect.getValue(),
+                        labels: suporteLabelsTomSelect.getValue(),
+                        prazo: form['suporte-prazo'].value
+                    };
+                } else {
+                    data = {
+                        title: form['infraestrutura-title'].value,
+                        description: editorInfra.getData(),
+                        milestone: form['infraestrutura-milestone'].value,
+                        assignees: infraestruturaAssigneeTomSelect.getValue(),
+                        labels: infraestruturaLabelsTomSelect.getValue(),
+                        prazo: form['infraestrutura-prazo'].value
+                    };
+                }
+
+                statusMessage.textContent = 'Enviando...';
+                statusMessage.classList.remove('hidden', 'text-green-500', 'text-red-500');
+
+                fetch(webhooks[sector], {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            statusMessage.textContent = 'Chamado criado com sucesso!';
+                            statusMessage.classList.add('text-green-500');
+                            form.reset();
+                            suporteAssigneeTomSelect.clear();
+                            suporteLabelsTomSelect.clear();
+                            infraestruturaAssigneeTomSelect.clear();
+                            infraestruturaLabelsTomSelect.clear();
+                            editorSuporte.setData('');
+                            editorInfra.setData('');
+                        } else {
+                            statusMessage.textContent = 'Erro ao criar o chamado.';
+                            statusMessage.classList.add('text-red-500');
+                        }
+                    })
+                    .catch(error => {
+                        statusMessage.textContent = 'Erro de conexão: ' + error.message;
+                        statusMessage.classList.add('text-red-500');
+                    })
+                    .finally(() => {
+                        setTimeout(() => { statusMessage.classList.add('hidden'); }, 5000);
+                    });
+            });
+
+            updateFormVisibility(sectorSelect.value);
+            loadSectorData(sectorSelect.value);
+        });
+    </script>
 </body>
+
 </html>
